@@ -1,6 +1,6 @@
 # Make and friends
 
-jrper.github.io/rv/make.html
+acse2020.github.io/acse-6-make/slides/make.html
 
 j.percival@imperial.ac.uk
 
