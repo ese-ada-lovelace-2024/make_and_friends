@@ -1,6 +1,6 @@
 # Configuration
 
-acse2020.github.io/acse-6-make/slides/hpc.html
+acse2020.github.io/acse-6-make/slides/cmake.html
 
 j.percival@imperial.ac.uk
 
@@ -51,17 +51,16 @@ To quote the Wikipedia autoconf page:
 >     affected by the change.
 > -   If a .in file has changed then it suffices to re-run config.status
 >     and make.
+
+
 > -   If the body of source code is copied to another computer then it
 >     is sufficient to re-run configure (which runs config.status) and
 >     make. (For this reason source code using Autotools is normally
 >     distributed without the files that configure generates.)
-
-
 > -   If the body of source code is changed more fundamentally, then
 >     configure.ac and the .in files need to be changed and all
 >     subsequent steps also followed.
-> -   To process files, autoconf uses the GNU implementation of the m4
->     macro system.
+
 
 ### GNU Automake, libtools etc.
 
