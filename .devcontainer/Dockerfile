@@ -6,7 +6,8 @@ FROM mcr.microsoft.com/vscode/devcontainers/cpp:0-${VARIANT}
 
 # [Optional] Uncomment this section to install additional packages.
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-     && apt-get -y install --no-install-recommends libopenmpi-dev cmake python3-pip
+     && apt-get -y install --no-install-recommends libopenmpi-dev cmake python3-pip \
+     libpng-dev libeigen3-dev
 RUN pip3 install sphinx jupyter_sphinx_theme
 
 RUN usermod -aG sudo vscode
