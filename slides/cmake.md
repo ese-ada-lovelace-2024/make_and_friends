@@ -57,6 +57,8 @@ To quote the Wikipedia autoconf page:
 >     is sufficient to re-run configure (which runs config.status) and
 >     make. (For this reason source code using Autotools is normally
 >     distributed without the files that configure generates.)
+
+
 > -   If the body of source code is changed more fundamentally, then
 >     configure.ac and the .in files need to be changed and all
 >     subsequent steps also followed.
@@ -86,7 +88,7 @@ into `Makefile.in` files
 
 Build instructions look like
 
-```
+```bash
 cmake .
 make
 sudo make install
@@ -104,7 +106,7 @@ build the code.
 
 A trivial example:
 
-```
+```cmake
 # set the project name (and the name f)
 PROJECT(HelloWorld)
 
