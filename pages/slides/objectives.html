@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Learning Objectives</title>
+    <link rel="stylesheet" href="../js/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../js/reveal.js/css/theme/white.css" id="theme">
+    <link rel="stylesheet" href="../js/reveal.js/lib/css/zenburn.css">
+  </head>
+<style>
+    .reveal .slides {
+        text-align: left;
+    }
+    .reveal .slides section>* {
+        margin-left: 0;
+        margin-right: 0;
+    }
+</style>
+  <body>
+     <div class="reveal">
+         <div class="slides">
+                <!-- Use external markdown resource, separate slides by three newlines; vertical slides by two newlines -->
+         <section data-markdown="objectives.md" data-separator="^\n\n\n" data-separator-vertical="^\n\n"></section>
+          </div>
+     </div>
+     <script src="../js/reveal.js/lib/js/head.min.js"></script>
+     <script src="../js/reveal.js//js/reveal.js"></script>
+     <script>
+      Reveal.initialize({
+      controls: true,
+      progress: true,
+      history: true,
+      center: true,
+      progress: true,
+      transition: 'slide',
+      slideNumber: 'c/t',
+
+      
+      // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: '../js/reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../js/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../js/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../js/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../js/reveal.js/plugin/math/math.js' },
+        ]
+      });
+     </script>  
+     <div class="logo">
+     </div>
+  </body>
+</html>

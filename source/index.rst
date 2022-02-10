@@ -12,6 +12,6 @@ j.percival@imperial.ac.uk
 
     make
     cmake
-    slurm
+    pbs
     testing
 

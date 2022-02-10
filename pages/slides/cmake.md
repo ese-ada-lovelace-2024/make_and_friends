@@ -1,6 +1,6 @@
 # Configuration
 
-acse2020.github.io/acse-6-make/slides/cmake.html
+https://ese-msc-2021.github.io/ppp-make/slides/cmake.html
 
 j.percival@imperial.ac.uk
 
@@ -113,6 +113,37 @@ PROJECT(HelloWorld)
 # add the executable
 ADD_EXECUTABLE(hello hello_world.cpp)
 ```
+
+
+
+Usefulness comes from additional cmake macros, especially `find_package()`.
+
+```
+find_package(MPI REQUIRED)
+
+target_include_directories(hello PUBLIC ${MPI_INCLUDE_PATH})
+target_link_libraries(hello ${MPI_LIBRARIES})
+```
+
+
+When CMake runs, it looks for the package (provided it knows about it) and sets up extra variables for you to use.
+
+
+
+You can also create cmake variable (and set values or defaults) yourself.
+
+Just set
+```
+set(MY_VARIABLE "my value")
+```
+
+Set default
+```
+set(MY_VARIABLE "my value" CACHE STRING)
+```
+
+
+Default (a.k.a cache) variables can also be set on the command line or via a GUI.
 
 
 ### CTest
