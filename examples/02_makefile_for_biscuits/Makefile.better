@@ -1,0 +1,11 @@
+eggs.o: eggs.cpp myheader.h
+	$(CXX) eggs.cpp -c
+
+flour.o: flour.cpp myheader.h
+	$(CXX) flour.cpp -c
+
+sugar.o: sugar.cpp myheader.h
+	$(CXX) sugar.cpp -c
+
+biscuit:  eggs.o flour.o sugar.o
+	$(CXX) eggs.o flour.o sugar.o -o biscuit
