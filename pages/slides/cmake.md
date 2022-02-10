@@ -143,12 +143,12 @@ set(MY_VARIABLE "my value" CACHE STRING)
 ```
 
 
-Default (a.k.a cache) variables can also be set on the command line or via a GUI.
+Default (a.k.a cache) variables can also be set on the command line or via a GUI (e.g Cmake-gui on windows/mac or ccmake on mac/linux)
 
 
 ### CTest
 
-- CMake includes its own generic testing framework.
+- CMake also includes its own generic testing framework.
 - Allows you to build test suites for any supported language.
 - Support for web dashboards to report results.
 - Lets go look at some code.
