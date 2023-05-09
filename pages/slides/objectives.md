@@ -1,6 +1,5 @@
 ## Objectives for the afternoon:
 
-- Windows users see how to compile MPI on linux.
-- Everyone learns to write a Makefile.
-- Everyone gets to see the basics of CMake.
-- Everyone (if they haven't) logs in to the college HPC system, builds some code and submits some jobs.
+- Windows users see how to compile MPI on linux (and Mac).
+- Everyone learns to read/write a Makefile.
+- Everyone gets to play more with CMake.

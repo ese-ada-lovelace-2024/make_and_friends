@@ -1,13 +1,17 @@
 cmake_minimum_required(VERSION 3.10)
 
-# set the project name (and the name f)
-project(TestExample)LINK_FLAGS
+# set the project name (and optionally define its version)
+project(ExampleWithTests VERSION 1.0)
 
-# add the library
-add_library(sum_func STATIC sum_func.cpp)
+include_directories(${CMAKE_SOURCE_DIR})
 
-add_executable(test_sum tests/test_sum)
-set_target_properties(test_sum PROPERTIES RUNTIME_OUTPUT_DIRECTORY tests/bin)
-target_link_libraries(test_sum PUBLIC sum_func)
+# add our library
+add_library(vec_funcs STATIC vec_funcs.cpp vec_funcs.h)
+
+# add the executable
+add_executable(calc calc.cpp vec_funcs.h)
+target_link_libraries(calc PUBLIC vec_funcs)
+
+include_directories(${CMAKE_SOURCE_DIR})
 enable_testing()
-add_test(NAME SumTest COMMAND tests/bin/test_sum)
+add_subdirectory(tests)

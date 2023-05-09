@@ -1,6 +1,6 @@
 # HPC
 
-ese-msc-2021.github.io/ppp-make/slides/hpc.html
+ese-msc-2022.github.io/ppp-make/slides/hpc.html
 
 j.percival@imperial.ac.uk
 

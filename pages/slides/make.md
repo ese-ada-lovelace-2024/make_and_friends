@@ -1,24 +1,24 @@
 # Make and friends
 
-<https://ese-msc-2021.github.io/ppp-make/slides/make.html>
+<https://ese-msc-2022.github.io/ppp-make/slides/make.html>
 
 j.percival@imperial.ac.uk
 
 
 
-### The three stages of generating a unix executable from source
+### The three stages of generating a unix executable from source code
 
 ![../images/workflow.png](../images/workflow.png)
 
- - Configure - find external  libraries and tools
+ - Configure - find external libraries and required tools
  - Build - Compile code and link executable
- - Run 
+ - Run - use executable (maybe many times)
 
 
 
 ### Configuring - `autotools` & `cmake`
 
-Linux packages often use tools called `cmake` [(www.cmake.org)](www.cmake.org) or `autotools` [(autotools.io)](autotools.io) to deal with finding libraries and file paths.
+Linux packages often use tools like `cmake` [(www.cmake.org)](www.cmake.org) or `autotools` [(autotools.io)](autotools.io) to deal with finding libraries and file paths (semi)automatically
 
 
 Installation instructions look something like
@@ -28,14 +28,12 @@ Installation instructions look something like
 make
 ```
 
-for `autotools` based projects or
+for `autotools` based projects or (for `cmake`)
 
 ```
-cmake .
+cmake -DMY_VARIABLE=seven .
 make
 ```
-
-for `cmake` ones.
 
 
 
@@ -66,8 +64,8 @@ $>
 
 On Unix-like systems (macs & linux):
 
-- default C compiler is `cc`, C++ compiler is `c++`
-- linker is `ld` (can just call compiler)
+- default C compiler is `cc`, default C++ compiler is `c++`
+- linker is `ld` (can usually just call compiler)
 - On linux `cc` is usual `gcc`, the gnu compiler
 - On Mac `cc` is clang (due to licensing)
 
@@ -76,9 +74,9 @@ On Windows:
 - Compiler is `cl.exe` for both,
 - Linker is `link.exe`.
 - Configure `.vcxproj` files with `msbuild.exe` or `devenv.exe`.
-- Need these things in the PATH.
+- Need these things in the `PATH`.
 
-See the [Microsoft documentation](https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=vs-2019) for more.
+See the [Microsoft documentation](https://learn.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=msvc-170) for more.
 
 
 ### MPI Wrappers
@@ -98,7 +96,7 @@ gcc -I/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -I/usr/lib/x86_64-linux-
 Operations get very complicated as you include more compiler options, link to more source files, include more headers from non-standard paths and link to more and more libraries:
 
 ```
-cxx -DUSE_VTK=1 -I/usr/local/include -I/apps/vtk myfile.cpp \
+c++ -DUSE_VTK=1 -I/usr/local/include -I/apps/vtk myfile.cpp \
  myotherfile.cpp another_file.o yetanotherfile.o \
  -O3 -g -ffast-math -lX -lm -L/usr/lib/vtk-6.3 \
  -lvtkCommonCore -lpng -o myfile
@@ -109,8 +107,8 @@ cxx -DUSE_VTK=1 -I/usr/local/include -I/apps/vtk myfile.cpp \
 
 Here we're using various (gcc/clang) compiler options:
 - The `-D` sets macros for `#ifdef` etc
-- The `-I` adds to the header search path
-- The `-L` adds to the library search path
+- The `-I` adds to the header search path (`.h` files)
+- The `-L` adds to the library search path (`.a` or `.so` files)
 - The `-O3` specifies maximum compiler optimizations (`-O0` would be none.)
 - The `-g` leaves in names for debugging
 - The `-lpng` links in a `libpng` library (using the shared `libpng.so` version by default).
@@ -122,7 +120,7 @@ Here we're using various (gcc/clang) compiler options:
 
 Code units must also be rebuilt _in order_ as their dependencies are updated.
 
-A lot of stuff  to remember. Nicer to automate.
+A lot of stuff to remember. Nicer to automate.
 
 
 
@@ -133,7 +131,7 @@ A halfhearted attempt will put commands in a text file, say `compile.sh`
 ```
 #!/usr/bin/env bash
 
-cxx -DUSE_VTK=1 -I/usr/local/include -I/apps/vtk myfile.cpp \
+c++ -DUSE_VTK=1 -I/usr/local/include -I/apps/vtk myfile.cpp \
  myotherfile.cpp another_file.o yetanotherfile.o \
  -O3 -g -ffast-math -lX -lm -L/usr/lib/vtk-5.10 \
  -lvtkCommonCore -lpng -o myfile
@@ -217,7 +215,7 @@ make biscuit
 (or just `make` to build default target, usually first one)
 - By default, recipe lines must start with `tab` characters, NOT spaces (sometimes an issue with VS code)
 - Variables are referenced with `$(variable_name)` or `${variable_name}`
-- Defaults to run each line in its OWN subshell.
+- Defaults to run each line in its OWN subshell (i.e. environment).
 
 
 ### GNU make: A program to build programs
@@ -359,7 +357,7 @@ Tells `make` that install doesn't really produce output, & should always run.
 
 `make` has an option `-j` to try to run multiple recipes at the same time.
 
-Eg. to allow up to 4 jobs at once (one is a manger)
+Eg. to allow up to 4 jobs at once (one is actually a manager)
 ```
 make -j4 all
 ```

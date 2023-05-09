@@ -1,6 +1,6 @@
 # Configuration
 
-https://ese-msc-2021.github.io/ppp-make/slides/cmake.html
+https://ese-msc-2022.github.io/ppp-make/slides/cmake.html
 
 j.percival@imperial.ac.uk
 
@@ -107,11 +107,11 @@ build the code.
 A trivial example:
 
 ```cmake
-# set the project name (and the name f)
-PROJECT(HelloWorld)
+# set the project name (maybe version number etc.)
+project(HelloWorld)
 
 # add the executable
-ADD_EXECUTABLE(hello hello_world.cpp)
+add_executable(hello hello_world.cpp)
 ```
 
 
@@ -121,8 +121,7 @@ Usefulness comes from additional cmake macros, especially `find_package()`.
 ```
 find_package(MPI REQUIRED)
 
-target_include_directories(hello PUBLIC ${MPI_INCLUDE_PATH})
-target_link_libraries(hello ${MPI_LIBRARIES})
+target_link_libraries(hello PUBLIC MPI::MPI_CXX)
 ```
 
 
@@ -132,12 +131,12 @@ When CMake runs, it looks for the package (provided it knows about it) and sets 
 
 You can also create cmake variable (and set values or defaults) yourself.
 
-Just set
+Just use the `set` command to force a value
 ```
 set(MY_VARIABLE "my value")
 ```
 
-Set default
+or to set a default
 ```
 set(MY_VARIABLE "my value" CACHE STRING)
 ```
