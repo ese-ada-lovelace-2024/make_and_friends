@@ -183,8 +183,6 @@ Default (a.k.a cache) variables can also be set on the command line or via a GUI
 
 
 
-
-
 ## Further Reading
 
 - [CMake homepage](https://cmake.org/)

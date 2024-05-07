@@ -40,7 +40,7 @@ Add with `module add X`, remove with `module rm X` (or `module load/unload`)
 ```
 #PBS -N mpi_test
 #PBS -l walltime=1:00:00
-#PBS -l select=2:ncpus=32:mpiprocs=32:mem=1GB
+#PBS -l select=1:ncpus=32:mpiprocs=32:mem=1GB
 
 module load intel-suite
 module load mpi
@@ -85,3 +85,32 @@ If you want 8 MPI tasks, and each task needs 4 cores (thanks to OpenMP), you wou
 - Sometimes gets out of date.
 - Try to stay as small as you can, but as large as you need
 - For short timing runs only, you may want a whole machine to yourself (e.g. `select=1:ncpus=32:mpiprocs=1:mem=1GB`)
+
+
+## How to configure/build your code
+
+- Best practice to work on the compute nodes (i.e. submit a job to the queue)
+- On the ICT cluster, for small jobs it's sometimes possible (not recommended!) to work on the login node.
+- Don't do it while 90 other people are trying to do the same thing.
+
+
+### Building/Compiling
+
+- Often easiest to submit a serial job.
+- Load the modules you need first (e.g. intel compilers)
+- Then compile your code based on the build system you are using:
+
+
+```
+#PBS -N mpi_test
+#PBS -l walltime=0:10:00
+#PBS -l select=1:ncpus=1:mem=1GB
+module load tools/prod
+module load intel-suite
+module load mpi
+
+mkdir -p build
+cd build
+cmake ..
+make
+```
