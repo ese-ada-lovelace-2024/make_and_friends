@@ -4,5 +4,7 @@
 **/cmake_install.cmake
 html/
 examples/**/*.o
+examples/**/*.exe
+examples/**/*.obj
 
 .vscode

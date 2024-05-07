@@ -1,0 +1,6 @@
+
+hello: hello_world.cpp
+	$(CXX) $(CXXFLAGS) /Fe:hello.exe hello_world.cpp
+	
+clean: .PHONY
+	del /Q hello.exe hello_world.obj

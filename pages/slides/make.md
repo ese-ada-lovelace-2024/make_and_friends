@@ -1,6 +1,6 @@
 # Make and friends
 
-<https://ese-msc-2022.github.io/ppp-make/slides/make.html>
+<https://ese-msc-2023.github.io/ppp-make/slides/make.html>
 
 j.percival@imperial.ac.uk
 

@@ -1,14 +1,14 @@
 # HPC
 
-ese-msc-2022.github.io/ppp-make/slides/hpc.html
+ese-msc-2023.github.io/ppp-make/slides/hpc.html
 
 j.percival@imperial.ac.uk
 
 
 
-## sshing to CX1 (College cluster)
+## Reminders: sshing to the College cluster
 
-- Connect to college network (Imperial-WPA on site, or use the VPN)
+- Connect to college network (via Imperial-WPA on site, or use the VPN)
 
 ```
 ssh jrper@login.hpc.ic.ac.uk
@@ -71,9 +71,17 @@ Big line, sets what resources you are asking for. In this case:
 - Of which all 32 will do MPI (optional)
 - Using 1GB memory on each computer (node)
 
+## ncpus versus mpiprocs
 
-### What job size should I use
+- `ncpus` is the total number of cores you are asking for (including for MPI, OpenMP + anything else)
+- `mpiprocs` is the number of cores you want to use for MPI tasks (if you are using MPI)
 
-- ICT publish general guidance on what's available
+If you want 8 MPI tasks, and each task needs 4 cores (thanks to OpenMP), you would set `ncpus=32` and `mpiprocs=8`
+
+
+### What job sizes should I use
+
+- ICT publish general guidance on what's available in the cluster
 - Sometimes gets out of date.
 - Try to stay as small as you can, but as large as you need
+- For short timing runs only, you may want a whole machine to yourself (e.g. `select=1:ncpus=32:mpiprocs=1:mem=1GB`)

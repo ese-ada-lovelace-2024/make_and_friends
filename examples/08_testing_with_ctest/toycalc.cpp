@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <cstdlib>
+#include <string>
 
 int main(int argc, char* argv[]){
     if (argc < 2) {

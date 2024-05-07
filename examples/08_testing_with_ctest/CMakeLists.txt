@@ -9,8 +9,8 @@ include_directories(${CMAKE_SOURCE_DIR})
 add_library(vec_funcs STATIC vec_funcs.cpp vec_funcs.h)
 
 # add the executable
-add_executable(calc calc.cpp vec_funcs.h)
-target_link_libraries(calc PUBLIC vec_funcs)
+add_executable(toycalc toycalc.cpp vec_funcs.h)
+target_link_libraries(toycalc PUBLIC vec_funcs)
 
 include_directories(${CMAKE_SOURCE_DIR})
 enable_testing()

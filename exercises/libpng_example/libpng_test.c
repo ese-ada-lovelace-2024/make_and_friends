@@ -1,13 +1,9 @@
 /*
- * A simple libpng example program
+ * Based simple libpng example program
  * http://zarb.org/~gc/html/libpng.html
  *
  * Modified by Yoshimasa Niwa to make it much simpler
  * and support all defined color_type.
- *
- * To build, use the next instruction on OS X.
- * $ brew install libpng
- * $ clang -lz -lpng16 libpng_test.c
  *
  * Copyright 2002-2010 Guillaume Cottenceau.
  *
@@ -135,22 +131,44 @@ void write_png_file(char *filename) {
   png_destroy_write_struct(&png, &info);
 }
 
-void process_png_file() {
+void sharpen_png_file() {
+  png_bytep* array = (png_bytep*)malloc(sizeof(png_bytep) * height*width);
   for(int y = 0; y < height; y++) {
     png_bytep row = row_pointers[y];
     for(int x = 0; x < width; x++) {
-      png_bytep px = &(row[x * 4]);
-      // Do something awesome for each pixel here...
-      //printf("%4d, %4d = RGBA(%3d, %3d, %3d, %3d)\n", x, y, px[0], px[1], px[2], px[3]);
+      array[width*y+x] = &(row[x * 4]);
     }
   }
+  for(int y = 0; y < height; y++) {
+    png_bytep row = row_pointers[y];
+    for(int x = 0; x < width; x++) {
+      png_bytep pixel = &(row[x * 4]);
+      if(x > 0 && x < width-1 && y > 0 && y < height-1) {
+        for(int i = 0; i < 3; i++) {
+          int sum = (9*array[width*y+x][i] 
+                    -1*array[width*y+x-1][i] 
+                    -1*array[width*y+x+1][i] 
+                    -1*array[width*(y-1)+x][i] 
+                    -1*array[width*(y+1)+x][i]
+                    -1*array[width*(y-1)+x-1][i]
+                    -1*array[width*(y-1)+x+1][i]
+                    -1*array[width*(y+1)+x-1][i]
+                    -1*array[width*(y+1)+x+1][i])/8;
+          if(sum < 0) sum = 0;
+          if(sum > 255) sum = 255;
+          pixel[i] = sum;
+        }
+      }
+    }
+  }
+  free(array);
 }
 
 int main(int argc, char *argv[]) {
   if(argc != 3) abort();
 
   read_png_file(argv[1]);
-  process_png_file();
+  sharpen_png_file();
   write_png_file(argv[2]);
 
   return 0;

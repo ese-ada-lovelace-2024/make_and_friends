@@ -13,5 +13,5 @@ foreach(TARGET IN ITEMS test_sum test_prod)
     add_test(NAME ${TARGET} COMMAND bin/${TARGET})
 endforeach()
 
-add_test(NAME test_calc_sum COMMAND calc sum 1 2 3)
+add_test(NAME test_calc_sum COMMAND toycalc sum 1 3 6)
 

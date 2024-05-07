@@ -1,6 +1,6 @@
 # Configuration
 
-https://ese-msc-2022.github.io/ppp-make/slides/cmake.html
+https://ese-msc-2023.github.io/ppp-make/slides/cmake.html
 
 j.percival@imperial.ac.uk
 
@@ -8,10 +8,11 @@ j.percival@imperial.ac.uk
 
 # Configuration
 
-- One of the hardest tasks in building new software is finding header files/libraries for dependencies.
+- One of the hardest tasks in building new software is putting together the paths for header files/libraries for dependencies.
+- In a proper build system this is dealt with in a configuration step, using a configuration tool such as
+GNU autotools or CMake.
 
-- In a proper build system this is dealt with in a configuration step, using a configuration tool such as an
-autotools, or CMake.
+- Sometimes it can also remind you to install missing dependencies.
 
 
 
@@ -21,7 +22,7 @@ autotools, or CMake.
 which generate Makefiles from templates,substituing placeholder variables
 with real paths and values.
 
-- Many autotools packages out there, but probably best not to add to them.
+- Many existing autotools packages out there, probably best not to add to them.
 
 
 Installation instructions typically look something like
@@ -32,7 +33,7 @@ make
 sudo make install
 ```
 
-`configure` script is bash script, built up from many macros.
+`configure` is a bash (i.e. shell/terminal) script, built up from many macros.
 
 
 ### GNU Autoconf
@@ -77,7 +78,7 @@ into `Makefile.in` files
 
 ## CMake
 
-- CMake is newer (around 1999), developed at KitWare (also develop VTK, the visualization toolkit & ParaView, 3D data viusualizer).
+- CMake is newer (from around 1999), developed at KitWare (also develop VTK, the visualization toolkit & ParaView, 3D data viusualizer).
 
 - Compared to `autotools`, CMake has a slightly cleaner structure.
 
@@ -124,7 +125,6 @@ find_package(MPI REQUIRED)
 target_link_libraries(hello PUBLIC MPI::MPI_CXX)
 ```
 
-
 When CMake runs, it looks for the package (provided it knows about it) and sets up extra variables for you to use.
 
 
@@ -145,12 +145,43 @@ set(MY_VARIABLE "my value" CACHE STRING)
 Default (a.k.a cache) variables can also be set on the command line or via a GUI (e.g Cmake-gui on windows/mac or ccmake on mac/linux)
 
 
+
+### Learning CMAKE
+
+- CMake is a very powerful tool, but can be a bit daunting at first.
+- The [CMake homepage](https://cmake.org/) has a lot of documentation.
+- Fair number of tutorials on the web.
+
+
+### A word of caution
+
+- Like C++, CMake has developed over time.
+- Some older tutorials may use outdated practices (espcially if they predate CMake 3.0).
+- This can sometimes confuse Chatbots and CoPilot.
+
+
+
 ### CTest
 
-- CMake also includes its own generic testing framework.
+- CMake also includes its own generic testing framework, CTest
 - Allows you to build test suites for any supported language.
 - Support for web dashboards to report results.
+
+
+
+## Examples
+
+- The `ppp-make` repo has a few examples (and exercises) of CMake usage.
+- Useful as a reference for your own projects.
+
+
+### Unit Testing
+
+- Same philosophy as in Python
+- Build a test suite, run it, , clean up, check the results 
 - Lets go look at some code.
+
+
 
 
 

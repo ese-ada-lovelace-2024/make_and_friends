@@ -1,0 +1,36 @@
+# An Autotools example
+
+This is a (close to) minimal example of a C++ project using the GNU Autotools. Feel free to skip this if you are not interested in Autotools, we recommend using CMake for new projects instead.
+
+There is a single source file, `main.cpp` in the `src` directory, which contains a simple `main` function that prints "Hello, world!". There is a `configure.ac` file in the root directory which tells Autotools that this is a C++ project and that we are using Automake. There is also a `Makefile.am` file in the `src` directory which tells Automake how to build the project, by listing the source files and the target executable. There are also some other files that are required by Autotools, such as `NEWS`, `README`, `AUTHORS`, and `ChangeLog`.
+
+To build the project, run the following commands:
+
+```
+aclocal
+autoconf
+automake --add-missing
+./configure
+make
+```
+
+Take care to wait for `aclocal` to generate the `aclocal.m4` file before running `autoconf`, and for `autoconf` to generate the `configure` script before running `automake`. The `--add-missing` option to `automake` is used to create some additional files that are required by Autotools. The `./configure` script is used to generate the `Makefile` from the `Makefile.am` file. The `make` command is used to build the project.
+
+## Dependencies
+
+The only dependencies are the GNU Autotools, which are available in most package managers. For example, on Ubuntu, you can install them with the following command:
+
+```
+sudo apt-get install autoconf automake libtool
+```
+
+For macOS, you can install them with Homebrew:
+
+```
+brew install autoconf automake libtool
+```
+
+There are no Windows instructions, as Autotools is not supported on Windows. However, you can use the Windows Subsystem for Linux (WSL) to build this project on Windows.
+
+
+
