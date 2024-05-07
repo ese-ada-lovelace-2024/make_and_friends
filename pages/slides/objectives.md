@@ -7,8 +7,8 @@
 
 ## Slides
 
-- [Makefiles](../make.html)
-- [CMake](../cmake.html)
-- [HPC](../hpc.html)
+- [Makefiles](./make.html)
+- [CMake](./cmake.html)
+- [HPC](./hpc.html)
 
 All at [ese-msc-2023.github.io/ppp-make/](https://ese-msc-2023.github.io/ppp-make/)
