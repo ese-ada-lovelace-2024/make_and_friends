@@ -1,2 +1,5 @@
 biscuit:  eggs.cpp flour.cpp sugar.cpp myheader.h
 	$(CXX) eggs.cpp flour.cpp sugar.cpp -o biscuit
+
+clean: .PHONY
+	rm biscuit

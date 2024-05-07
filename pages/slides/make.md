@@ -83,7 +83,7 @@ See the [Microsoft documentation](https://learn.microsoft.com/en-us/cpp/build/bu
 
 On unix like systems:
 
-- executable scripts like `mpicc` & `mpic++` wrap compiler to add in libraries/include path
+- executable scripts like `mpicc` & `mpicxx` wrap compiler to add in libraries/include path
 - use `mpicc --show` to see what it's actually doing.
 
 ```bash

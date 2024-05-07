@@ -29,9 +29,10 @@ replace `jrper` with _your_ username
 
 Add with `module add X`, remove with `module rm X` (or `module load/unload`)  
 
-- `intel-suite/2019.4`: Add in the intel compilers (eg. `icpc` for C++)
+- `tools/prod`: Get the CX3 build tools (you want this first)
+- `intel-compilers/2023.2.1`: Add in the intel compilers (eg. `icpc` for C++)
 - `gcc`: Add in a specific version of gcc
-- `intel-mpi`: Intel implementation of  mpi
+- `impi`/`mpi-intel`: Intel implementation of  mpi
 - `anaconda`: Add in python3 support via anaconda.
 
 
@@ -45,6 +46,7 @@ Add with `module add X`, remove with `module rm X` (or `module load/unload`)
 module load intel-suite
 module load mpi
 
+make
 mpiexec ~/MPI_Example/my_code
 ```
 
@@ -59,7 +61,7 @@ just sets a name. Used in (e.g.) `qstat` to identify your job, and controls the 
 #PBS -l walltime=1:00:00
 ``
 
-Set the maximum run time before your job gets killed. Shorter jobs get queued faster, especially if you get short enough to be (e.g.) debug job class
+Set the maximum run time before your job gets killed. Shorter jobs get queued faster, especially if you get short enough to be in the (e.g.) debug job queue
 
 ```
 #PBS -l select=2:ncpus=32:mpiprocs=32:mem=1GB
@@ -67,16 +69,26 @@ Set the maximum run time before your job gets killed. Shorter jobs get queued fa
 
 Big line, sets what resources you are asking for. In this case:
 - 2 computers (nodes)
-- with total of 32 cores
-- Of which all 32 will do MPI (optional)
+- with total of 32 cores each
+- Of which all 32 will do MPI (optional for Non-MPI jobs)
 - Using 1GB memory on each computer (node)
+
+
+```
+make
+mpiexec ~/MPI_Example/my_code
+```
+
+- Actual payload of the job.
+- Individual lines run in serial unless you use a parallel program (e.g. `mpiexec`, or `make -j 16`)
+- No explicit `-n` flag for `mpiexec` so it will use all 32 cores on each node (as per the `#PBS -l` line).
 
 ## ncpus versus mpiprocs
 
 - `ncpus` is the total number of cores you are asking for (including for MPI, OpenMP + anything else)
 - `mpiprocs` is the number of cores you want to use for MPI tasks (if you are using MPI)
 
-If you want 8 MPI tasks, and each task needs 4 cores (thanks to OpenMP), you would set `ncpus=32` and `mpiprocs=8`
+If you want 8 MPI tasks, and each task needs 4 cores (thanks to OpenMP), you would set `ncpus=32` and `mpiprocs=8` with `ompthreads=4` in your code.
 
 
 ### What job sizes should I use
@@ -106,8 +118,8 @@ If you want 8 MPI tasks, and each task needs 4 cores (thanks to OpenMP), you wou
 #PBS -l walltime=0:10:00
 #PBS -l select=1:ncpus=1:mem=1GB
 module load tools/prod
-module load intel-suite
-module load mpi
+module load intel-compilers
+module load impi
 
 mkdir -p build
 cd build
