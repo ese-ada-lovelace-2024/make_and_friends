@@ -1,6 +1,6 @@
 # Configuration
 
-https://ese-msc-2023.github.io/ppp-make/slides/cmake.html
+https://ese-ada-lovelace-2024.github.io/ppp-make/slides/cmake.html
 
 j.percival@imperial.ac.uk
 

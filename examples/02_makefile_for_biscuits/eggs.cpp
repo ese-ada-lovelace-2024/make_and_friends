@@ -20,4 +20,5 @@ std::ostream& operator<<(std::ostream& os, const Egg& e) {
     os << e.colour << ", " << e.finish;
     if (e.sweet) os << " sweet";
     os << std::endl;
+    return os;
 }

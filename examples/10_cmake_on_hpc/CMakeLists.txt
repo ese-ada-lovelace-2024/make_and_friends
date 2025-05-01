@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.10)
 project(MPIHelloWorld)
 
 # add the executable
-add_executable(hello2 main.cpp)
+add_executable(hello main.cpp)
 
 find_package(MPI REQUIRED)
 

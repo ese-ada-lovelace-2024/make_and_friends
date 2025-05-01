@@ -1,0 +1,14 @@
+#PBS -N run_hello
+#PBS -l walltime=0:10:00
+#PBS -l select=1:ncpus=4:mpiprocs=4:mem=1800mb
+
+module load tools/prod
+module load GCC/13.2.0
+# replace with module load intel-suite for intel
+module load OpenMPI/4.1.6-GCC-13.2.0
+
+cd ${TMPDIR}/
+
+mpiexec ${PBS_O_WORKDIR}/hello
+
+pbsdsh cp ${TMPDIR}/*.txt ${PBS_O_WORKDIR}

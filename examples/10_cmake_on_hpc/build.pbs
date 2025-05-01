@@ -1,0 +1,20 @@
+#PBS -N comp_p
+#PBS -l walltime=0:10:00
+#PBS -l select=1:ncpus=1:mem=1800mb
+
+module load tools/prod
+module load GCC/13.2.0
+# replace with module load intel-suite for intel
+module load OpenMPI/4.1.6-GCC-13.2.0
+
+module load CMake/3.27.6-GCCcore-13.2.0
+
+# could also do cd $PBS_O_WORKDIR to build in the same directory
+cd ${TMPDIR} 
+mkdir -p build
+cd build
+
+cmake ${PBS_O_WORKDIR}
+make
+
+pbsdsh cp ${TMPDIR}/build/hello ${PBS_O_WORKDIR}

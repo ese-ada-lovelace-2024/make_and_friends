@@ -1,6 +1,6 @@
 # Make and friends
 
-<https://ese-msc-2023.github.io/ppp-make/slides/make.html>
+<https://ese-ada-lovelace-2024.github.io/make_and_friends/slides/make.html>
 
 j.percival@imperial.ac.uk
 

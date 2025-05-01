@@ -1,6 +1,6 @@
 # HPC
 
-ese-msc-2023.github.io/ppp-make/slides/hpc.html
+ese-ada-lovelace-2024.github.io/make_and_friends/slides/hpc.html
 
 j.percival@imperial.ac.uk
 
@@ -8,7 +8,7 @@ j.percival@imperial.ac.uk
 
 ## Reminders: sshing to the College cluster
 
-- Connect to college network (via Imperial-WPA on site, or use the VPN)
+- Connect to college network (via Imperial-WPA on site, or use Zscaler/ College VPN)
 
 ```
 ssh jrper@login.hpc.ic.ac.uk
@@ -27,24 +27,23 @@ replace `jrper` with _your_ username
 
 ### Useful Modules
 
-Add with `module add X`, remove with `module rm X` (or `module load/unload`)  
+Add with `module load X`, remove with `module unload X` (or `module add/rm`)  
 
-- `tools/prod`: Get the CX3 build tools (you want this first)
-- `intel-compilers/2023.2.1`: Add in the intel compilers (eg. `icpc` for C++)
-- `gcc`: Add in a specific version of gcc
-- `impi`/`mpi-intel`: Intel implementation of  mpi
+- `tools/prod`: Get the CX3 build tools (you always want this first)
+- `intel-compilers/2023.2.1`: Could add in the Intel compilers (eg. `icpc` for C++)
+- `GCC`: Add in a specific version of gcc
+- `OpenMPI` or `impi`: Intel implementation of  mpi
 - `anaconda`: Add in python3 support via anaconda.
-
 
 ### Defining your job
 
-```
+```pbs
 #PBS -N mpi_test
 #PBS -l walltime=1:00:00
 #PBS -l select=1:ncpus=32:mpiprocs=32:mem=1GB
 
-module load intel-suite
-module load mpi
+module load intel-compilers
+module load impi
 
 make
 mpiexec ~/MPI_Example/my_code

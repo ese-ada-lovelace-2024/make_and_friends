@@ -10,7 +10,7 @@ extern "C" {
     static PyObject* is_prime_wrapper(PyObject* self, PyObject* args);
 }
 
-static PyObject* primes_wrapper(PyObject* self, PyObject* args)
+static PyObject* primes_wrapper(PObyject* self, PyObject* args)
 {
     int n;
     if (!PyArg_ParseTuple(args, "i", &n))

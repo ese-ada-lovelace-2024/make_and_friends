@@ -11,9 +11,9 @@ set_target_properties(primes PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_
 
 find_package(Python COMPONENTS Interpreter Development REQUIRED)
 
-add_executable(test_primes ${CMAKE_SOURCE_DIR}/src/test_primes.cpp)
+#add_executable(test_primes ${CMAKE_SOURCE_DIR}/src/test_primes.cpp)
 
-target_link_libraries(test_primes primes)
+#target_link_libraries(test_primes primes)
 
 add_custom_target(wrapper ALL
                           COMMAND ${Python_EXECUTABLE} ${CMAKE_SOURCE_DIR}/python/setup.py build_ext --build-lib ${CMAKE_BINARY_DIR}/lib

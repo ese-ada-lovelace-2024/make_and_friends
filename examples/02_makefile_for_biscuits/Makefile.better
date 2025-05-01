@@ -8,7 +8,7 @@ sugar.o: sugar.cpp myheader.h
 	$(CXX) sugar.cpp -c
 
 biscuit:  eggs.o flour.o sugar.o
-	$(CXX) eggs.o flour.o sugar.o -o 
+	$(CXX) eggs.o flour.o sugar.o -o biscuit
 	
 clean: .PHONY
 	rm *.o biscuit
