@@ -18,7 +18,7 @@ j.percival@imperial.ac.uk
 
 ### Configuring - `autotools` & `cmake`
 
-Linux packages often use tools like `cmake` [(www.cmake.org)](www.cmake.org) or `autotools` [(autotools.io)](autotools.io) to deal with finding libraries and file paths (semi)automatically
+Linux packages often use tools like `cmake` ([www.cmake.org](https://www.cmake.org)) or `autotools` ([autotools.io](autotools.io)) to deal with finding libraries and file paths (semi)automatically
 
 
 Installation instructions look something like

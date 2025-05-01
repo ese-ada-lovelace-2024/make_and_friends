@@ -9,6 +9,7 @@ Reinstall your `brew` gcc to fix the MPI issues some of you have been having tha
 - Everyone learns to read/write a Makefile.
 - Everyone gets to play/think more with CMake.
 
+
 ## Slides
 
 - [Makefiles](./make.html)
